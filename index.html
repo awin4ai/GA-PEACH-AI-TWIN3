@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GA Peach AI Twin</title>
+  <style>
+
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 2rem;
+      background: #fff8f5;
+    }
+    input, button {
+      padding: 0.5rem;
+      margin: 1rem;
+      width: 80%;
+      max-width: 400px;
+    }
+    img {
+      margin-top: 2rem;
+      max-width: 90%;
+      height: auto;
+      border: 4px solid #fcb3a0;
+      border-radius: 12px;
+    }
+    .loading {
+      font-size: 1.2rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>GA Peach AI Twin</h1>
+  <p>Describe your ideal AI photo:</p>
+  <input type="text" id="promptInput" placeholder="e.g., peach glam portrait" />
+  <br />
+  <button onclick="generateImage()">Generate Image</button>
+  <div class="loading" id="loadingMsg" style="display:none;">Generating your twin...</div>
+  <img id="resultImage" src="" alt="" style="display:none;" />
+
+  <script>
+    const functionUrl = "https://gaPeachGenerate2-266672042962.us-central1.run.app";
+
+    async function generateImage() {
+      const prompt = document.getElementById("promptInput").value.trim();
+      if (!prompt) {
+        alert("Please enter a description!");
+        return;
+      }
+
+      document.getElementById("loadingMsg").style.display = "block";
+      document.getElementById("resultImage").style.display = "none";
+
+      try {
+        const response = await fetch(functionUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt })
+        });
+
+        const data = await response.json();
+
+        if (data.imageUrl) {
+          document.getElementById("resultImage").src = data.imageUrl;
+          document.getElementById("resultImage").style.display = "block";
+        } else {
+          alert("No image returned. Please try again.");
+        }
+      } catch (error) {
+        console.error(error);
+        alert("Error generating image. Check your backend.");
+      } finally {
+        document.getElementById("loadingMsg").style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
