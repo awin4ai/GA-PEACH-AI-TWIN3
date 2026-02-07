@@ -2,71 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ga Peach AI Twin</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
-      background: #fef6f0;
-    }
-    h1 {
-      color: #e2725b;
-    }
-    button {
-      padding: 12px 24px;
-      margin: 10px;
-      font-size: 16px;
-      background-color: #ff914d;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #e26d3b;
-    }
-    footer {
-      margin-top: 50px;
-      font-size: 14px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GA Peach AI Twin</title>
 </head>
 <body>
+  <h1>Generate Your Peach AI Twin 🍑</h1>
+  
+  <input type="text" id="promptInput" placeholder="Enter your image prompt" />
+  <button onclick="generateImage()">Generate</button>
 
-  <h1>✨ Ga Peach AI Twin Generator</h1>
-  <p>Create your custom AI avatar with ease. Choose a plan to begin:</p>
-
-  <button onclick="buyPlan('free')">Start Free Plan (20 generations)</button><br />
-  <button onclick="buyPlan('basic')">Subscribe to Basic ($15.99/month)</button><br />
-  <button onclick="buyPlan('premium')">Subscribe to Premium ($39.99/month)</button><br />
-  <button onclick="buyPlan('addon')">Buy Add-On (10 generations for $10.99)</button>
-
-  <footer>
-    <p><a href="https://your-linktree-username.link/terms-of-use" target="_blank">📄 Terms of Use</a></p>
-    <p>&copy; 2026 Ga Peach AI</p>
-  </footer>
+  <div id="result"></div>
 
   <script>
-    async function buyPlan(plan) {
-      const response = await fetch(https://us-central1-silken-phalanx-483504-v2.cloudfunctions.net/gaPeachGenerate3
-, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ plan })
+    async function generateImage() {
+      const prompt = document.getElementById("promptInput").value || "default peach AI twin";
+
+      const res = await fetch("https://us-central1-silken-phalanx-483504-v2.cloudfunctions.net/gaPeachGenerate3", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ prompt })
       });
 
-      const data = await response.json();
+      const data = await res.json();
 
-      if (data.url) {
-        window.location.href = data.url;
+      const resultDiv = document.getElementById("result");
+      if (data.status === "success") {
+        resultDiv.innerHTML = `<p><strong>Prompt:</strong> ${data.prompt}</p><img src="${data.imageUrl}" alt="AI Twin Image" style="max-width:100%;">`;
       } else {
-        alert("Something went wrong. Please try again.");
+        resultDiv.innerHTML = `<p style="color:red;">Error: ${data.message}</p>`;
       }
     }
   </script>
-
 </body>
 </html>
-
