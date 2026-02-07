@@ -1,24 +1,46 @@
-Welcome to the GA Peach AI Twin Generator — a simple AI image generator that lets users create their own “AI Twin” by entering a text prompt.
+# 🍑 GA Peach AI Twin Generator
 
-🚀 How It Works
+The **GA Peach AI Twin Generator** is a web-based AI image creation tool that allows users to generate personalized “AI Twin” images by entering a text prompt. The app is designed for ease of use, mobile compatibility, and future monetization.
 
-Enter a prompt describing your AI Twin (e.g., "a confident woman in peach tones wearing futuristic fashion").
+---
 
-The app sends your prompt to the OpenAI DALL·E model using a secure Google Cloud Function.
+## 🚀 How It Works
 
-The image is generated and displayed on your screen.
-🌐 Live Demo
+1. Users enter a description of their desired AI Twin  
+   *(example: “a confident peach-toned AI woman with futuristic style”)*  
+2. The prompt is sent securely to a **serverless backend**  
+3. An AI image is generated and returned to the user  
+4. The image is displayed instantly on the webpage
 
-👉 Click here to try it now
+The backend ensures API keys remain private and secure.
 
-This site is hosted via GitHub Pages.
+---
 
-📦 Tech Stack
+## 🌐 Live App
 
-Frontend: HTML + JavaScript
+👉 **Launch the AI Twin Generator here:**  
+**[PASTE YOUR GITHUB PAGES LINK HERE]**
 
-Backend: Google Cloud Function (Node.js)
+This app is designed to be accessed directly or linked through platforms like **Linktree**.
 
-AI API: OpenAI DALL·E (via images/generations)
+---
 
-Hosting: GitHub Pages
+## 🧠 Tech Stack
+
+**Frontend**
+- HTML
+- Vanilla JavaScript
+- Hosted with GitHub Pages
+
+**Backend**
+- Google Cloud Functions (Node.js)
+- Serverless architecture
+- Secure environment variables
+
+**AI Image Generation**
+- OpenAI Image Generation API (DALL·E / GPT Image)
+
+---
+
+## 📁 Project Structure
+
