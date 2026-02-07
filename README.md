@@ -1,46 +1,41 @@
-# 🍑 GA Peach AI Twin Generator
+# 🍑 GA Peach AI Twin
 
-The **GA Peach AI Twin Generator** is a web-based AI image creation tool that allows users to generate personalized “AI Twin” images by entering a text prompt. The app is designed for ease of use, mobile compatibility, and future monetization.
-
----
-
-## 🚀 How It Works
-
-1. Users enter a description of their desired AI Twin  
-   *(example: “a confident peach-toned AI woman with futuristic style”)*  
-2. The prompt is sent securely to a **serverless backend**  
-3. An AI image is generated and returned to the user  
-4. The image is displayed instantly on the webpage
-
-The backend ensures API keys remain private and secure.
+**Create AI-generated images of your custom “Peach” avatar directly from your prompt.** Built with OpenAI + Google Cloud Functions.
 
 ---
 
-## 🌐 Live App
-
-👉 **Launch the AI Twin Generator here:**  
-**[PASTE YOUR GITHUB PAGES LINK HERE]**
-
-This app is designed to be accessed directly or linked through platforms like **Linktree**.
+## 🌟 Live App
+👉 [Use the GA Peach AI Twin](https://us-central1-silken-phalanx-483504-v2.cloudfunctions.net/gaPeachGenerate3)
 
 ---
 
-## 🧠 Tech Stack
-
-**Frontend**
-- HTML
-- Vanilla JavaScript
-- Hosted with GitHub Pages
-
-**Backend**
-- Google Cloud Functions (Node.js)
-- Serverless architecture
-- Secure environment variables
-
-**AI Image Generation**
-- OpenAI Image Generation API (DALL·E / GPT Image)
+## 🚀 Features
+- Generate custom AI Peach avatars
+- OpenAI DALL·E backend
+- Hosted on Google Cloud Functions
+- BYOK (Bring Your Own Key) ready
+- API & browser ready
 
 ---
 
-## 📁 Project Structure
+## 🔧 Tech Stack
+- **Frontend**: Linktree (external wrapper) or Web page
+- **Backend**: Node.js 22, Google Cloud Functions
+- **AI Model**: OpenAI DALL·E 3 (via `images/generations` endpoint)
+- **Auth**: API Key (environment variable)
+
+---
+
+## 📦 Installation (for Devs)
+Clone and deploy with Google Cloud:
+
+```bash
+git clone https://github.com/yourusername/ga-peach-ai-twin.git
+cd ga-peach-ai-twin
+gcloud functions deploy gaPeachGenerate3 \
+  --entry-point=generate \
+  --runtime=nodejs22 \
+  --trigger-http \
+  --allow-unauthenticated \
+  --source=.
 
