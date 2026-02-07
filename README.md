@@ -38,4 +38,7 @@ gcloud functions deploy gaPeachGenerate3 \
   --trigger-http \
   --allow-unauthenticated \
   --source=.
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE). You are free to use, modify, and distribute this project for personal or commercial purposes.
 
