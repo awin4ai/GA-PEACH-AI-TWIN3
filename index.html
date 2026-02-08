@@ -3,19 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GA Peach AI Twin</title>
+  <title>GA Peach AI Twin Generator</title>
 </head>
 <body>
-  <h1>Generate Your Peach AI Twin 🍑</h1>
-  
-  <input type="text" id="promptInput" placeholder="Enter your image prompt" />
-  <button onclick="generateImage()">Generate</button>
+  <h1>GA Peach AI Twin</h1>
+  <input type="text" id="prompt" placeholder="Enter your prompt..." />
+  <button onclick="generateImage()">Generate Image</button>
 
-  <div id="result"></div>
+  <div id="loading" style="display:none;">Generating...</div>
+  <img id="result" src="" alt="Generated AI Twin" style="max-width: 400px; margin-top: 20px;" />
 
   <script>
     async function generateImage() {
-      const prompt = document.getElementById("promptInput").value || "default peach AI twin";
+      const prompt = document.getElementById("prompt").value;
+      document.getElementById("loading").style.display = "block";
+      document.getElementById("result").src = "";
 
       const res = await fetch("https://us-central1-silken-phalanx-483504-v2.cloudfunctions.net/gaPeachGenerate3", {
         method: "POST",
@@ -26,12 +28,12 @@
       });
 
       const data = await res.json();
+      document.getElementById("loading").style.display = "none";
 
-      const resultDiv = document.getElementById("result");
       if (data.status === "success") {
-        resultDiv.innerHTML = `<p><strong>Prompt:</strong> ${data.prompt}</p><img src="${data.imageUrl}" alt="AI Twin Image" style="max-width:100%;">`;
+        document.getElementById("result").src = data.imageUrl;
       } else {
-        resultDiv.innerHTML = `<p style="color:red;">Error: ${data.message}</p>`;
+        alert("Image generation failed: " + (data.message || "Unknown error"));
       }
     }
   </script>
